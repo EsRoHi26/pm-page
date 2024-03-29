@@ -16,13 +16,14 @@ export async function Crear(valores: any) {
         }
         
     })
-    .then(res => res.json())
+    .then(res => res.json()) 
     .then(data => {
         console.log(data)
-        //window.location.reload()
+        alert("Proyecto creado con exito")
+        window.location.reload()
     })
     .catch(error => console.error('Error:', error))
-    //alert("Proyecto creado con exito")
+    
     
 }
 
