@@ -83,7 +83,7 @@ const page = () => {
                         <h1 className='text-xl font-bold'>Nuevo Proyecto</h1>
                         <hr />
                         <form  onSubmit={handleForm} className='card bg-gray-400 bg-opacity-50 px-10 py-8 mx-52 mt-11 shadow-xl'>
-                        <h5 className='mx-2 mt-2'>Nombre del Projecto</h5>
+                        <h5 className='mx-2 mt-2'>Nombre del Proyecto</h5>
                         <input type="text" placeholder="Type here" className="input input-bordered mt-2 bg-white mb-1" 
                         name="nombre" value={valores.nombre} onChange={handleInputChange} required />
                         <h5 className='mx-2 mt-2'>Recursos</h5>
