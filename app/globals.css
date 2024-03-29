@@ -31,3 +31,7 @@ body {
     text-wrap: balance;
   }
 }
+
+.diagonal-split {
+  background: linear-gradient(to bottom right, white 50%, #2D3748 50%);
+}
