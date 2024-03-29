@@ -6,10 +6,10 @@ const page = () => {
     return (
         <div className="flex h-screen bg-white">
             <SideNav />
-            <div className="flex-1 px-4 pt-2 text-black space-y-2 ">
-            <h1 className="text-2xl font-bold p-4">Crear Usuario</h1>
-                <div className="justify-center">
-                <form className="mt-5 space-y-2 border-2 border-black p-10  inline-block ml-16">
+            <div className="flex-1 px-4 pt-2 text-black bg-green-100">
+                <div className='card bg-gray-400 bg-opacity-50 px-10 py-8 mx-52 mt-11 shadow-xl'>
+                    <h1 className='text-xl font-bold'>Crear Usuario</h1>
+                <form className="mt-5 space-y-4 border-2 border-black p-10  inline-block ml-44 mr-44 rounded">
                     <li style={{ listStyleType: 'none' }}><label htmlFor="name">Nombre: </label>
                     <input type="text" className="rounded" id="name" required /></li>
 
