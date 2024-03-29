@@ -13,26 +13,26 @@ const proyectos = [
 ]
 
 const ProyectCard = async () => {
-    const projects = await fetch('http://localhost:9000/api/proyectos', {method: 'GET'});
+    const projects = await fetch('http://localhost:9000/api/proyectos', { method: 'GET', cache: 'no-cache' });
     const prj: Proyectos[] = await projects.json();
 
     return (
         <div className="flex flex-wrap">
             {prj.map(user => (
-                <Link className="p-4 md:w-1/4 lg:w-2/6 xl:w-1/8 flex-shrink-0" href={{
-                    pathname: '/proyecto',
-                    query: { name: user.nombre} // the data
-                }}>
-                    <div
-                        key={user._id}
-                        className=""
-                    >
+                <div
+                    key={user._id}
+                    className="p-4 md:w-1/4 lg:w-2/6 xl:w-1/8 flex-shrink-0"
+                >
+                    <Link className="" href={{
+                        pathname: '/proyecto',
+                        query: { name: user.nombre, id: user._id } // the data
+                    }}>
                         <div className="bg-white shadow-xl p-4 rounded-md  group border-indigo-500 hover:bg-gray-700 hover:shadow-lg hover:border-transparent">
                             <h2 className="text-xl font-semibold text-black group-hover:text-gray-200">{user.nombre}</h2>
                             <p className='text-black group-hover:text-gray-200'>{user.descripcion}</p>
                         </div>
-                    </div>
-                </Link>
+                    </Link>
+                </div>
             ))}
         </div>
     )

@@ -22,3 +22,15 @@ export interface Tarea {
     estado:          string;
     _id:             string;
 }
+
+export interface Participante {
+    _id:          string;
+    name:         string;
+    cedula:       number;
+    email:        string;
+    contrasenna:  string;
+    departamento: string;
+    telefono:     number;
+    proyecto:     number;
+    __v:          number;
+}

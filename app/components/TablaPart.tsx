@@ -1,9 +1,29 @@
 import React from 'react'
-import { Usuarios } from '../interfaces/users.interface';
+import { Participante, Proyectos } from '../interfaces/project.interface';
 
-const TablaPart = async () => {
-    const res = await fetch('https://jsonplaceholder.typicode.com/users');
-    const data: Usuarios[] = await res.json();
+const TablaPart = async (id: {id:string}) => {
+    const test:string = id.id;
+    const url: string = 'http://localhost:9000/api/proyectos/' + test;
+
+    const res = await fetch(url, { method: 'GET' })
+        .then(response => response.json())
+        .then((data: Proyectos) => data.correoColaboradores)
+        .then(async (respu) => {
+            const resp = await fetch('http://localhost:9000/api/usuarios', { method: 'GET' })
+                .then(response => response.json())
+                .then(data => {
+                    let lista: Participante[] = []; // Initialize lista as an empty array
+                    data.map((user: Participante) => {
+                        for (let email of respu){
+                            if (user.email === email) {
+                                lista.push(user); // Push user to lista
+                            }
+                        }
+                    });
+                    return lista; // Return lista instead of data
+                });
+            return resp; // Return resp instead of data
+        });
 
     return (
         <div className="overflow-auto h-44">
@@ -16,15 +36,17 @@ const TablaPart = async () => {
                         <th>Telefono</th>
                     </tr>
                 </thead>
-                <tbody> 
-                {data.map(user => (
-                    <tr key={user.id}>
-                        <td></td>
-                        <td>{user.name}</td>
-                        <td>{user.email}</td>
-                        <td>{user.phone}</td>
-                    </tr>
-                        ))}                
+                <tbody>
+                    {res.map(user => {
+                        return (
+                            <tr key={user._id}>
+                                <td></td>
+                                <td>{user.name}</td>
+                                <td>{user.email}</td>
+                                <td>{user.telefono}</td>
+                            </tr>
+                        );
+                    })}
                 </tbody>
             </table>
         </div>
