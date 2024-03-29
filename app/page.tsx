@@ -1,10 +1,73 @@
-
+'use client'
 import Link from 'next/link';
 import React from 'react'
+import { useState } from 'react'
 
+export async function Autenticar(valores: any) {
+  const url: String = "http://localhost:9000/api/autenticacion";
+  fetch("http://localhost:9000/api/autenticacion", {
+        method: 'POST',
+        body: JSON.stringify(valores),
+        headers: {
+            'Content-Type': 'application/json'
+        }
+        
+    })
+    .then(res => {
+      console.log(res)
+      if (res.status === 500) {
+        
+        alert ("Correo o contraseña incorrectos")
+      }
+      if (res.status === 200){
+        
+        window.location.href = "/principal";
+      }
+      return res.json();
+    })
+    .then(res => res.json()) 
+    //.then(data => {
+    //    console.log(data)
+    //    window.location.href = "/principal";
+    //    //window.location.reload()
+    //})
+    .catch(error => {console.error('Error:', error)})
+    //alert ("Correo o contraseña incorrectos")})
+    
+
+};
 
 
 const Home = () => {
+
+  const [valores, setValores] = useState({
+    email: '',
+    contrasenna: ''
+  });
+
+  const Form = () => {
+    const [valores, setValores] = useState({
+      email: '',
+      contrasenna: ''
+    });
+};
+
+const handleForm = (event: any) => {
+  event.preventDefault();
+  console.log(valores);
+  
+  
+  Autenticar(valores);
+};
+
+const handleInputChange = (event: any) => {
+  const { name, value } = event.target;
+  setValores({
+      ...valores,
+      [name]: value,
+  });
+}
+
   return (
     <div className="flex h-screen bg-white diagonal-split">
       <div className="w-40 bg-gray-800 text-white xs:w-1/6">
@@ -17,11 +80,13 @@ const Home = () => {
               <h1 className="text-2xl font-bold ">Login</h1>
               <hr />
               <ul className="mt-5 space-y-2">
-                <form className="mt-5 space-y-2">
+                <form onSubmit={handleForm} className="mt-5 space-y-2">
                   <li><label htmlFor="email" >Email:</label></li>
-                  <li><input type="email" className="rounded" id="email" required /></li>
+                  <li><input type="email" className="rounded" id="email" 
+                  name="email" value={valores.email} onChange={handleInputChange} required /></li>
                   <li><label htmlFor="password">Password:</label></li>
-                  <li><input type="password" className="rounded" id="password" required /></li>
+                  <li><input type="password" className="rounded" id="password" 
+                  name="contrasenna" value={valores.contrasenna} onChange={handleInputChange} required /></li>
                   <button type="submit" className="bg-white text-black rounded">Login</button>
                 </form>
                 <li><h1 className="text-xs">¿No tiene usuario? <Link href={'/crear-usuario'} style={{ color: 'blue' }}>Registrarse</Link></h1></li>
