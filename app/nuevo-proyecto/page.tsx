@@ -16,7 +16,7 @@ export async function Crear(valores: any) {
         }
         
     })
-    .then(res => res.json())
+    .then(res => res.json()) 
     .then(data => {
         console.log(data)
         //window.location.reload()
