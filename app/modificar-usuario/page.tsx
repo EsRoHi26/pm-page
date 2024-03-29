@@ -12,16 +12,16 @@ const page = () => {
                 <form className="mt-5 space-y-4 border-2 border-black p-10  inline-block ml-44 mr-44 rounded">
 
                     <li style={{ listStyleType: 'none' }}><label htmlFor="id">Cédula: </label>
-                    <input type="text" className="rounded" id="id" required /></li>
+                    <input type="text" className="bg-white rounded" id="id" required /></li>
 
                     <li style={{ listStyleType: 'none' }}><label htmlFor="email">Cambiar Email: </label>
-                    <input type="email" className="rounded" id="email" /></li>
+                    <input type="email" className="bg-white rounded" id="email" /></li>
 
                     <li style={{ listStyleType: 'none' }}><label htmlFor="department">Cambiar Departmento: </label>
-                    <input type="text" className="rounded" id="department" /></li>
+                    <input type="text" className="bg-white rounded" id="department" /></li>
 
                     <li style={{ listStyleType: 'none' }}><label htmlFor="phone">Cambiar Teléfono: </label>
-                    <input type="tel" className="rounded" id="phone"  /></li>
+                    <input type="tel" className="bg-white rounded" id="phone"  /></li>
 
                     <div>
                         <li style={{ listStyleType: 'none' }}>
@@ -33,8 +33,8 @@ const page = () => {
                         </li>
                     </div>
                     <div className="flex justify-between">
-                        <button type="button" className="bg-gray-800 text-white rounded"><Link href={'/principal'}>Cancelar</Link></button>
-                        <button type="submit" className="bg-gray-800 text-white rounded">Guardar</button>
+                        <button type="reset" className="btn btn-defult mt-8  shadow-lg"><Link href={'/principal'}>Cancelar</Link></button>
+                        <button type="submit" className="btn btn-defult mt-8  shadow-lg">Guardar</button>
                     </div>
                 </form>
                 </div>
