@@ -15,9 +15,9 @@ router.post('/autenticacion', (req, res) => {
                 res.status(500).send('El usuario no se ha encontrado');
             } else {
                 if (usuario.contrasenna === contrasenna) {
-                    res.json({mensaje: 'Usuario autenticado'});
+                    res.status(200).json({ mensaje: 'Usuario autenticado' });
                 } else {
-                    res.json({mensaje: 'Contraseña incorrecta'});
+                    res.status(500).json({mensaje: 'Contraseña incorrecta'});
                 }
             }
         }
