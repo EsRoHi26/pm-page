@@ -1,4 +1,5 @@
 'use client'
+import Link from 'next/link'
 import React from 'react'
 
 let todo = [
@@ -35,8 +36,17 @@ const Kanban = () => {
 
     return (
         <div className='flex space-x-3 p-5'>
-            <div className='flex-1 bg-lime-300 shadow-md p-4 rounded-md'>
-                <h1>Todo</h1>
+            <div className='flex-1 bg-gray-300 shadow-md p-4 rounded-md bg-opacity-40'>
+                <div className='flex text-white'>
+                    <div className='flex-1'>
+                        <h1>Todo</h1>
+                    </div>
+                    <div className='flex'>
+                        <div className='rounded bg-gray-400 bg-opacity-0 px-2 text-center shadow-md hover:shadow-none hover:bg-opacity-60'>
+                            <Link href={"/new-task"}>+</Link>
+                        </div>
+                    </div>
+                </div>
                 {todo.map(({ id, name }) => (
                     <div key={id}>
                         <div className="bg-white shadow-md p-4 my-1 rounded-md">
@@ -46,8 +56,17 @@ const Kanban = () => {
                     </div>
                 ))}
             </div>
-            <div className='flex-1 bg-lime-500 shadow-md p-4 rounded-md'>
-                <h1>In Progress</h1>
+            <div className='flex-1 bg-gray-300 shadow-md p-4 rounded-md bg-opacity-40'>
+            <div className='flex text-white'>
+                    <div className='flex-1'>
+                        <h1>In Progress</h1>
+                    </div>
+                    <div className='flex'>
+                        <div className='rounded bg-gray-400 bg-opacity-0 px-2 text-center text-white shadow-md hover:shadow-none hover:bg-opacity-60'>
+                            <Link href={"/new-task"}>+</Link>
+                        </div>
+                    </div>
+                </div>
                 {prog.map(({ id, name }) => (
                     <div key={id}>
                         <div className="bg-white shadow-md p-4 my-1 rounded-md">
@@ -56,8 +75,17 @@ const Kanban = () => {
                     </div>
                 ))}
             </div>
-            <div className='flex-1 bg-lime-700 shadow-md p-4 rounded-md'>
-                <h1>Done</h1>
+            <div className='flex-1 bg-gray-300 shadow-md p-4 rounded-md bg-opacity-40'>
+            <div className='flex text-white'>
+                    <div className='flex-1'>
+                        <h1>Done</h1>
+                    </div>
+                    <div className='flex'>
+                        <div className='rounded bg-gray-400 bg-opacity-0 px-2 text-center text-white shadow-md hover:shadow-none hover:bg-opacity-60'>
+                            <Link href={"/new-task"}>+</Link>
+                        </div>
+                    </div>
+                </div>
                 {done.map(({ id, name }) => (
                     <div key={id}>
                         <div className="bg-white shadow-md p-4 my-1 rounded-md">

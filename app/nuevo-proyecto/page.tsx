@@ -3,6 +3,7 @@ import React from 'react'
 import SideNav from '../components/SideNav'
 import { useState } from 'react'
 
+
 export async function Crear(valores: any) {
     //const valoresJSON = JSON.stringify(valores);
     //console.log(valoresJSON);
