@@ -23,8 +23,7 @@ const esquemaProyecto = mongoose.Schema({
         required: true
     },
     descripcion:{
-        type: String,
-        required: true
+        type: String
     },
     fechaInicio:{
         type: Date,
@@ -34,17 +33,15 @@ const esquemaProyecto = mongoose.Schema({
         type: Date, 
     },
     historialCambios:{
-        type: Array,
-        required: true
+        type: Array
     },
     correoResponsable:{
-        type: String,
-        required: true
+        type: String
     },
     tareas: {
         type: Array,
         required: true,
-        of: { // Define el tipo de objetos dentro del array
+        of: {
             nombre: {
             type: String,
             required: true
