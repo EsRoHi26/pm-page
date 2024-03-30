@@ -6,7 +6,7 @@ import { Usuarios } from '../interfaces/users.interface'
 
 const DDown = async (id: {pId: string, estado:string } ) => {
     const s:string = id.pId;
-    console.log(id.pId);
+    console.log(id.pId); 
     const users = await fetch('http://localhost:9000/api/usuarios')
         .then(response => response.json())
         .then(data => { let temp: Usuarios[] = data; return temp })
