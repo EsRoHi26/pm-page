@@ -30,15 +30,18 @@ const Kanban = async (id: { id: string }) => {
         });
 
     return (
-        <div className='flex space-x-3 p-5'>
-            <div className='flex-1 bg-gray-300 shadow-md p-4 rounded-md bg-opacity-40'>
+        <div className='flex space-x-3 p-5 '>
+            <div className='flex-1 bg-gray-300 shadow-md p-4 rounded-md bg-opacity-40 overflow-auto h-72'>
                 <div className='flex text-white'>
                     <div className='flex-1'>
                         <h1>Todo</h1>
                     </div>
                     <div className='flex'>
                         <div className='rounded bg-gray-400 bg-opacity-0 px-2 text-center shadow-md hover:shadow-none hover:bg-opacity-60'>
-                            <Link href={"/new-task"}>+</Link>
+                            <Link href={{
+                                pathname: '/new-task',
+                                query: { pID: test, estado:"Pendiente" } // the data
+                            }}>+</Link>
                         </div>
                     </div>
                 </div>
@@ -55,7 +58,7 @@ const Kanban = async (id: { id: string }) => {
                             </div>
                             <div className='flex'>
                                 <div className='flex-1'>
-                                    <p>Puntos: {job.puntos}</p>
+                                    <p>P: {job.puntos}</p>
                                 </div>
                                 <div>
                                     <p>{job.correoEncargado}</p>
@@ -68,14 +71,17 @@ const Kanban = async (id: { id: string }) => {
                     </div>
                 ))}
             </div>
-            <div className='flex-1 bg-gray-300 shadow-md p-4 rounded-md bg-opacity-40'>
+            <div className='flex-1 bg-gray-300 shadow-md p-4 rounded-md bg-opacity-40 overflow-auto h-72'>
                 <div className='flex text-white'>
                     <div className='flex-1'>
                         <h1>In Progress</h1>
                     </div>
                     <div className='flex'>
                         <div className='rounded bg-gray-400 bg-opacity-0 px-2 text-center text-white shadow-md hover:shadow-none hover:bg-opacity-60 '>
-                            <Link href={"/new-task"}>+</Link>
+                        <Link href={{
+                                pathname: '/new-task',
+                                query: { pID: test, estado:"En curso" } // the data
+                            }}>+</Link>
                         </div>
                     </div>
                 </div>
@@ -95,7 +101,7 @@ const Kanban = async (id: { id: string }) => {
                             </div>
                             <div className='flex'>
                                 <div className='flex-1'>
-                                    <p>Puntos: {job.puntos}</p>
+                                    <p>P: {job.puntos}</p>
                                 </div>
                                 <div>
                                     <p>{job.correoEncargado}</p>
@@ -108,14 +114,17 @@ const Kanban = async (id: { id: string }) => {
                     </div>
                 ))}
             </div>
-            <div className='flex-1 bg-gray-300 shadow-md p-4 rounded-md bg-opacity-40'>
+            <div className='flex-1 bg-gray-300 shadow-md p-4 rounded-md bg-opacity-40 overflow-auto h-72'>
                 <div className='flex text-white'>
                     <div className='flex-1'>
                         <h1>Done</h1>
                     </div>
                     <div className='flex'>
                         <div className='rounded bg-gray-400 bg-opacity-0 px-2 text-center text-white shadow-md hover:shadow-none hover:bg-opacity-60'>
-                            <Link href={"/new-task"}>+</Link>
+                        <Link href={{
+                                pathname: '/new-task',
+                                query: { pID: test, estado:"Finalizada" } // the data
+                            }}>+</Link>
                         </div>
                     </div>
                 </div>
@@ -132,7 +141,7 @@ const Kanban = async (id: { id: string }) => {
                             </div>
                             <div className='flex'>
                                 <div className='flex-1'>
-                                    <p>Puntos: {job.puntos}</p>
+                                    <p>P: {job.puntos}</p>
                                 </div>
                                 <div>
                                     <p>{job.correoEncargado}</p>
@@ -145,7 +154,7 @@ const Kanban = async (id: { id: string }) => {
                     </div>
                 ))}
             </div>
-        </div>
+        </div >
     )
 }
 

@@ -5,7 +5,7 @@ import { useRouter } from 'next/navigation'
 const BackBtn = () => {
     const router = useRouter()
     return (
-        <div>
+        <div className='flex'>
             <button type="button" onClick={() => router.back()}>
                 Back
             </button>
