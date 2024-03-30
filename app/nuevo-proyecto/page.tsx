@@ -2,7 +2,9 @@
 import React from 'react'
 import SideNav from '../components/SideNav'
 import { useState } from 'react'
-import { Usuarios } from '../interfaces/users.interface';
+import { Participante } from '../interfaces/project.interface';
+import { Tarea } from '../interfaces/project.interface';
+import { CLIENT_STATIC_FILES_RUNTIME_REACT_REFRESH } from 'next/dist/shared/lib/constants';
 
 
 export async function Crear(valores: any) {
@@ -28,73 +30,91 @@ export async function Crear(valores: any) {
 
 }
 
+const page = async () => {
+    const usuar: Participante[] = await fetch('http://localhost:9000/api/usuarios', { method: 'GET' })
+        .then(response => response.json())
+        .then(data => {
+            let temp: Participante[] = data;
+            return temp;
+        });
 
-const page = () => {
     const hoy = new Date(Date.now()).toISOString().split('T')[0];
-    const [valores, setValores] = useState(
+    const valores: Proyecto = (
         {
             nombre: '',
             recursosN: '',
             presupuesto: 0,
-            correoColaboradores: '',
+            correoColaboradores: [],
             estado: 'Pendiente',
             descripcion: '',
             fechaInicio: hoy,
-            fechaFin: '',
-            historialCambios: [],
+            fechaFin: hoy,
             correoResponsable: '',
             tareas: []
-
         }
     );
 
-    const Form = () => {
-        const [valores, setValores] = useState({
-            nombre: '',
-            recursos: '',
-            presupuesto: '',
-            colaboradores: ''
-        });
-    };
+    interface Proyecto {
+        nombre: string;
+        recursosN: string;
+        presupuesto: number;
+        correoColaboradores: string[];
+        estado: string;
+        descripcion: string;
+        fechaInicio: string;
+        correoResponsable: string;
+        tareas: Tarea[];
+        fechaFin: string;
+        [key: string]: string | number | string[] | Tarea[] // Add index signature
+    }
+
+    const colAct: string[] = [];
 
     const handleForm = (event: any) => {
         event.preventDefault();
         console.log(valores);
-
 
         Crear(valores);
     };
 
     const handleInputChange = (event: any) => {
         const { name, value } = event.target;
-        setValores({
-            ...valores,
-            [name]: value,
-        });
+        valores[name] = value;
     }
 
+    const addColaborador = (event: any) => {
+        const { name, value } = event.target;
+        valores.correoColaboradores.push(value);
+    }
 
     return (
         <div className="flex h-screen bg-white">
             <SideNav />
-            <div className="flex-1 px-4 pt-2 text-black bg-green-100">
+            <div className="flex-1 px-4 pt-2 text-black bg-green-100 overflow-auto">
                 <div className='card bg-gray-400 bg-opacity-50 px-10 py-8 mx-52 pt-5 shadow-xl'>
                     <h1 className='text-xl font-bold'>Nuevo Proyecto</h1>
                     <hr />
                     <form onSubmit={handleForm} className='card bg-gray-400 bg-opacity-50 px-10 py-8 mt-2 shadow-xl'>
-
                         <h5 className='mx-2 mt-2'>Nombre del Proyecto</h5>
                         <input type="text" placeholder="Type here" className="input input-bordered mt-2 bg-white mb-1"
-                            name="nombre" value={valores.nombre} onChange={handleInputChange} required />
+                            name="nombre" onChange={handleInputChange} required />
                         <h5 className='mx-2 mt-2'>Recursos</h5>
                         <input type="text" placeholder="Type here" className="input input-bordered mt-2 bg-white mb-1"
-                            name="recursosN" value={valores.recursosN} onChange={handleInputChange} required />
+                            name="recursosN" onChange={handleInputChange} required />
                         <h5 className='mx-2 mt-2'>Presupuesto</h5>
                         <input type="text" placeholder="Type here" className="input input-bordered mt-2 bg-white mb-1"
-                            name="presupuesto" value={valores.presupuesto} onChange={handleInputChange} required />
+                            name="presupuesto" onChange={handleInputChange} required />
                         <h5 className='mx-2 mt-2'>Colaboradores</h5>
-                        <input type="text" placeholder="Type here" className="input input-bordered mt-2 bg-white mb-1"
-                            name="correoColaboradores" value={valores.correoColaboradores} onChange={handleInputChange} required />
+                        <select onChange={addColaborador} defaultValue={""} className="select select-bordered mt-2 bg-white mb-1">
+                            <option value="" disabled>Selecciona un usuario</option>
+                            {usuar.map(user => (
+                                <option key={user._id} value={user.email}>{user.name}</option>
+                            ))}
+                        </select>
+                        <h5 className='mx-2 mt-2'>Descripcion</h5>
+                        <textarea placeholder="Type here" onChange={handleInputChange} name='descripcion' className="input input-bordered mt-2 bg-white mb-1">
+
+                        </textarea>
                         <button type="submit" className="btn btn-defult mt-8 mr-80 shadow-lg">Crear</button>
 
                     </form>

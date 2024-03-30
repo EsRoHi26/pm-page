@@ -1,7 +1,7 @@
 'use client'
 import React from 'react'
 import BackBtn from './BackBtn'
-import { Usuarios } from '../interfaces/users.interface'
+import { Participante, Proyectos } from '../interfaces/project.interface'
 
 
 
@@ -9,9 +9,22 @@ const DDown = async (id: { pId: string, estado: string }) => {
     const s: string = id.pId;
     console.log(id.pId);
 
-    const users = await fetch('http://localhost:9000/api/usuarios')
+    const users = await fetch('http://localhost:9000/api/usuarios', { method: 'GET' })
         .then(response => response.json())
-        .then(data => { let temp: Usuarios[] = data; return temp })
+        .then(async (data) => { const temp: Participante[] = data; 
+            const temp2 = await fetch('http://localhost:9000/api/proyectos/' + s, { method: 'GET' })
+                .then(response => response.json())
+                .then((data:Proyectos) => {
+                    let temporal: Participante[] = [];
+                    data.correoColaboradores.map((correo: string) => {
+                        temp.map((user: Participante) => {
+                            if (user.email === correo) {
+                                temporal.push(user);
+                            }
+                        });
+                    });
+            return temporal; })
+        return temp2; })
 
     interface Job {
         nombre: string,
@@ -46,9 +59,11 @@ const DDown = async (id: { pId: string, estado: string }) => {
         }).then(response => response.json())
             .then(data => {
                 console.log(data);
+                alert("Tarea creada con exito");
             })
             .catch((error) => {
                 console.error('Error:', error);
+                alert("Error al crear la tarea");
             });
     }
     console.log(job);
@@ -63,7 +78,7 @@ const DDown = async (id: { pId: string, estado: string }) => {
                 <select name="correoEncargado" onChange={handleInputChange} defaultValue={""} className="select select-bordered mt-2 bg-white mb-1">
                     <option value="" disabled>Selecciona un usuario</option>
                     {users.map(user => (
-                        <option key={user.id} value={user.email}>{user.name}</option>
+                        <option key={user._id} value={user.email}>{user.name}</option>
                     ))}
                 </select>
                 <h5 className='mx-2 mt-2'>Story Points</h5>
@@ -72,7 +87,7 @@ const DDown = async (id: { pId: string, estado: string }) => {
                 <textarea placeholder="Type here" name='descripcion' onChange={handleInputChange} className="textarea textarea-bordered mt-2 bg-white mb-1" />
                 <div className='flex'>
                     <div className='flex-1'>
-                        <button type="submit" className="btn btn-defult mt-8 mr-80 shadow-lg">Crear</button>
+                        <button type="button" className="btn btn-defult mt-8 mr-80 shadow-lg" onClick={handleForm}>Crear</button>
                     </div>
                     <div className="flex btn btn-defult mt-8 ml-44 shadow-lg">
                         <BackBtn />
