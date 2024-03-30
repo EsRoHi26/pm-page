@@ -10,7 +10,6 @@ const page = () => {
         <div className="flex h-screen bg-white">
             <SideNav />
             <DdownP/>
-            
         </div>
     )
 }

@@ -7,11 +7,12 @@ import { Proyectos } from '../interfaces/users.interface'
 
 const DdownP = async() => {
 
+    let idProyecto = "";
+
     const proyectos = await fetch('http://localhost:9000/api/proyectos')
         .then(response => response.json())
         .then(data => { let temp: Proyectos[] = data; return temp })
-
-    console.log(proyectos);
+        proyectos.push({nombre: "Ninguno", _id: ""})
 
     interface Job {
         name: string,
@@ -35,12 +36,23 @@ const DdownP = async() => {
     }
 
     function handleInputChange (event: any) {
+        event.preventDefault();
+        if (event.target.name === "proyecto") {
+            job[event.target.name]  = event.target.value.replace(/['"]+/g, '');
+            console.log(job[event.target.value]);
+            idProyecto = JSON.stringify(job[event.target.name])
+            idProyecto= idProyecto.replace(/['"]+/g, '');
+            
+        } else {
+            job[event.target.name] = event.target.value;
+        }
         const temp:{ name:string, value:string|number } = event.target;
         const campo:string = temp.name;
         job[campo] = temp.value;
     }
 
     function handleForm() {
+        // se crea el usuario
         fetch('http://localhost:9000/api/usuarios', {
             method: 'POST',
             body: JSON.stringify(job),
@@ -59,6 +71,27 @@ const DdownP = async() => {
             .catch((error) => {
                 console.error('Error:', error);
             });
+        // revisa si se le asigno un proyecto al usuario
+        if (idProyecto !== ""){
+
+            
+
+            // se agrega el usuario a la lista de colaboradores del proyecto seleccionado
+            fetch('http://localhost:9000/api/agregarusuarioP', {
+                method: 'POST',
+                body: JSON.stringify({idProyecto: idProyecto , email: job.email}),
+                headers: {'Content-Type': 'application/json'}
+            }).then(response => response.json())
+            .then(data => {
+                console.log(data);
+                console.log(job);
+                console.log('agregado a la lista de usuarios del proyecto')
+                
+            })
+            .catch((error) => {
+                console.error('Error:', error);
+            });
+        }    
     }
     //console.log(job);
 
