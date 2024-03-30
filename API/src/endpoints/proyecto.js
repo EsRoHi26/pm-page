@@ -250,6 +250,7 @@ router.get("/proyectos/:id/tareas", (req, res) => {
         .catch((error) => res.json(error));
 }); 
 
+// informacion para el burndown chart
 router.get('/proyectos/:id/burndownC', (req, res) => {
     const { id } = req.params;
 
@@ -321,4 +322,50 @@ router.get('/proyectos/:id/burndownC', (req, res) => {
         .catch((error) => res.json(error));
 
 });
+
+// agregar usuario al proyecto
+router.post('/agregarusuarioP', (req, res) => {
+    const { idProyecto, email } = req.body;
+    console.log(idProyecto);
+    esquemaProyecto.findById(idProyecto)
+        .then((proyecto) => { //revisa que el usuario no este ya en el proyecto
+            if (proyecto.correoColaboradores.length>0){
+                for (let i = 0; i < proyecto.correoColaboradores.length; i++) {
+                    if (proyecto.correoColaboradores == email) {
+                        return res.status(400).json({ error: "El usuario ya está en el proyecto" });
+                    }
+                }
+            }
+            
+
+            proyecto.correoColaboradores.push(email);
+            proyecto.save()
+            .then(() => res.json({ mensaje: "Usuario agregado al proyecto" }))
+                .catch((error) => res.json(error));
+        })
+    });
+    // eliminar miembro del proyecto
+router.delete('/eliminarMiembroP', (req, res) => {
+    const { idProyecto, idUsuario } = req.body;
+
+    esquemaProyecto.findById(idProyecto)
+        .then((proyecto) => {
+            let indice = -1;
+            for (let i = 0; i < proyecto.miembros.length; i++) {
+                if (proyecto.miembros[i] == idUsuario) {
+                    indice = i;
+                }
+            }
+
+            if (indice == -1) {
+                return res.status(400).json({ error: "El usuario no está en el proyecto" });
+            } else {
+                proyecto.miembros.splice(indice, 1);
+                proyecto.save()
+                .then(() => res.json({ mensaje: "Usuario eliminado del proyecto" }))
+                .catch((error) => res.json(error));
+            }
+        });
+});
+
 module.exports = router;
