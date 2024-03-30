@@ -31,6 +31,7 @@ const DdownPM = async() => {
     }
 
     function handleInputChange(event: any) {
+        event.preventDefault();
         const temp: { name: string, value: string | number } = event.target;
         const campo: string = temp.name;
         job[campo] = temp.value;
