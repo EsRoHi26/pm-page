@@ -26,13 +26,8 @@ export async function Autenticar(valores: any) {
       return res.json();
     })
     .then(res => res.json()) 
-    //.then(data => {
-    //    console.log(data)
-    //    window.location.href = "/principal";
-    //    //window.location.reload()
-    //})
+    
     .catch(error => {console.error('Error:', error)})
-    //alert ("Correo o contraseña incorrectos")})
     
 
 };
