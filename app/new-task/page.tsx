@@ -4,7 +4,8 @@ import DDown from '../components/Ddown'
 
 const page = ({ searchParams }: {
     searchParams: {
-        pId: string
+        pId: string,
+        estado: string
       }
 }) => {
     interface temp{

@@ -12,8 +12,8 @@ const page = () => {
                     <form className="mt-5 space-y-4 border-2 border-black p-3 inline-block ml-44 mr-44 rounded text-gray-400">
                         <input type="text" name="title" placeholder="Título" className="w-full input input-bordered mt-2 bg-white mb-1" />
                         <textarea name="description" placeholder="Tema" className="w-full input input-bordered mt-2 bg-white mb-1"></textarea>
-                        <input type="date" name="date" className="w-full input input-bordered mt-2 bg-white mb-1" />
-                        <input type="time" name="time" className="w-full input input-bordered mt-2 bg-white mb-1" />
+                        <input type="date" name="date" className="w-full input input-bordered mt-2 bg-gray-200 mb-1" />
+                        <input type="time" name="time" className="w-full input input-bordered mt-2 bg-gray-200 mb-1" />
                         <input type="text" name="people" placeholder="Invitados" className="w-full input input-bordered mt-2 bg-white mb-1" />
                         <input type="text" name="location" placeholder="Medio De La Reunión" className="w-full input input-bordered mt-2 bg-white mb-1" />
                         <div className="flex justify-between space-x-2">
