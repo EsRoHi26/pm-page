@@ -5,11 +5,11 @@ import ProyectCard from '../components/ProyectCard';
 
 const principal = () => {
   return (
-    <div className="flex h-screen bg-white">
+    <div className="flex h-screen bg-white overflow-auto">
       <SideNav />
       <div className="flex-1 px-4 pt-2">
         <div className='flex h-screen'>
-          <div className="flex-2 mb-8 w-64 bg-slate-400">
+          <div className="flex-2 mb-8 w-64 bg-slate-400 ">
             <div className='mt-5 p-5'>
               <h1>Opciones</h1>
               <hr />
@@ -23,10 +23,12 @@ const principal = () => {
             </div>
           </div>
           <div className='flex-1 mb-8 ml-2 bg-white text-black'>
-            <div className='mt-5 p-5 overflow-auto'>
+            <div className='mt-11 p-5'>
               <h1>Proyectos</h1>
               <hr className='h-1 bg-black' />
+              <div className='overflow-auto h-96 mt-8'>              
                 <ProyectCard />
+              </div>
             </div>
           </div>
         </div>
