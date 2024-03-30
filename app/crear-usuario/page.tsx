@@ -33,7 +33,7 @@ const page = () => {
                         <div className="flex justify-between">
                             <label>Estado: </label>                            
                             <button type="button" className="bg-slate-400 text-black rounded">Libre</button>
-                            <button type="button" className="bg-slate-400 text-black rounded">Asignar A Proyecto</button>
+                            <button type="button" className="bg-slate-400 text-black rounded"><Link href={'/asignar-colaborador'}>Asignar A Proyecto</Link></button>
                             </div>
                         </li>
                     </div>
