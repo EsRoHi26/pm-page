@@ -79,7 +79,7 @@ const page = () => {
             <div className="flex h-screen bg-white">
                 <SideNav />
                 <div className="flex-1 px-4 pt-2 text-black bg-green-100">
-                    <div className='card bg-gray-400 bg-opacity-50 px-10 py-8 mx-52 mt-11 shadow-xl'>
+                    
                         <h1 className='text-xl font-bold'>Nuevo Proyecto</h1>
                         <hr />
                         <form  onSubmit={handleForm} className='card bg-gray-400 bg-opacity-50 px-10 py-8 mx-52 mt-11 shadow-xl'>
@@ -97,7 +97,7 @@ const page = () => {
                         name="correoColaboradores" value={valores.correoColaboradores} onChange={handleInputChange} required/>
                         <button type="submit" className="btn btn-defult mt-8 mr-80 shadow-lg">Crear</button>
                         </form>
-                    </div>
+                    
                 </div >
             </div>
         )
