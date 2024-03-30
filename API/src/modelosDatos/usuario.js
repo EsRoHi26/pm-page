@@ -26,8 +26,7 @@ const esquemaUsuario = mongoose.Schema({
         required: true
     }, 
     proyecto:{
-        type: Number,
-        required: true
+        type: String
     }   
 });
 

@@ -27,3 +27,19 @@ export interface Company {
     catchPhrase: string;
     bs:          string;
 }
+
+export interface Proyectos {
+    id: String;
+    nombre: string;
+    recursosN: String;
+    presupuesto: number;
+    correoColaboradores: string;
+    estado: string;
+    descripcion: string;
+    fechaInicio: Date;
+    fechaFin: Date | null;
+    historialCambios: any[];                                          
+    correoEncargado: string;
+    tareas: any[];
+    
+}
