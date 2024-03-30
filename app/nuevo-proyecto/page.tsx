@@ -82,6 +82,7 @@ const page = () => {
                     <h1 className='text-xl font-bold'>Nuevo Proyecto</h1>
                     <hr />
                     <form onSubmit={handleForm} className='card bg-gray-400 bg-opacity-50 px-10 py-8 mt-2 shadow-xl'>
+
                         <h5 className='mx-2 mt-2'>Nombre del Proyecto</h5>
                         <input type="text" placeholder="Type here" className="input input-bordered mt-2 bg-white mb-1"
                             name="nombre" value={valores.nombre} onChange={handleInputChange} required />
@@ -95,6 +96,7 @@ const page = () => {
                         <input type="text" placeholder="Type here" className="input input-bordered mt-2 bg-white mb-1"
                             name="correoColaboradores" value={valores.correoColaboradores} onChange={handleInputChange} required />
                         <button type="submit" className="btn btn-defult mt-8 mr-80 shadow-lg">Crear</button>
+
                     </form>
                 </div>
             </div >
