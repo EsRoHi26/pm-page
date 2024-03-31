@@ -323,6 +323,47 @@ router.get('/proyectos/:id/burndownC', (req, res) => {
 
 });
 
+//informe general
+router.get('/informeG', (req, res) => {
+    //obtener todos los proyectos
+    let contadorFinalizadas = 0;
+    let contadorEnCurso = 0;
+    let contadorPendientes = 0;
+    let listTareas = [];
+    esquemaProyecto.find()
+        .then((proyectos) => {
+            for (let i = 0; i < proyectos.length; i++) {
+                
+                
+                listTareas = proyectos[i].tareas;
+                
+                
+                for (const tarea of listTareas) {
+                    //console.log(tarea)
+                    if (tarea.estado === "Finalizada") {
+                        contadorFinalizadas += 1
+                    }
+                    else if (tarea.estado === "En curso") {
+                        contadorEnCurso += 1
+                    }
+                    else if (tarea.estado === "Pendiente") {
+                        contadorPendientes += 1
+                    }
+                };
+                
+                
+            }
+            const informeGen = {
+                tareasFinalizadas: contadorFinalizadas,
+                tareasEnCurso: contadorEnCurso,
+                tareasPendientes: contadorPendientes
+            };
+            return res.json(informeGen);
+        })
+        .catch((error) => res.json(error));
+});
+
+
 // agregar usuario al proyecto
 router.post('/agregarusuarioP', (req, res) => {
     const { idProyecto, email } = req.body;
@@ -367,5 +408,9 @@ router.delete('/eliminarMiembroP', (req, res) => {
             }
         });
 });
+
+
+//revisar si tiene proyecto 
+
 
 module.exports = router;
