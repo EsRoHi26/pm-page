@@ -3,7 +3,7 @@ import React from 'react'
 import SideNav from '../components/SideNav'
 import Link from 'next/link'
 
-import { Proyectos } from '../interfaces/users.interface'
+import { Proyectos } from '../interfaces/project.interface'
 import { Usuario2 } from '../interfaces/project.interface'
 
 
