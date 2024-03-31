@@ -23,8 +23,10 @@ const principal = () => {
             </div>
           </div>
           <div className='flex-1 mb-8 ml-2 bg-white text-black'>
+
             <div className='mt-11 p-5'>
               <h1>Proyectos</h1>
+
               <hr className='h-1 bg-black' />
               <div className='overflow-auto h-96 mt-8'>              
                 <ProyectCard />
@@ -33,7 +35,7 @@ const principal = () => {
           </div>
         </div>
       </div>
-    </div>
+    
   );
 };
 

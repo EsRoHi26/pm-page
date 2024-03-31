@@ -5,7 +5,6 @@ import DdownP from '../components/DdownP'
 
 const page = () => {
 
-
     return (
         <div className="flex h-screen bg-white">
             <SideNav />
