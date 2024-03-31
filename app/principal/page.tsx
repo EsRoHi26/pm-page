@@ -16,7 +16,7 @@ const principal = () => {
               <ul className="mt-5 space-y-2">
                 <li className='hover:bg-gray-700 hover:shadow-lg p-2 rounded'><Link href={'/nuevo-proyecto'}>Nuevo Projecto</Link></li>
                 <li className='hover:bg-gray-700 hover:shadow-lg p-2 rounded'><Link href={'/informe-general'}>Informe general</Link></li>
-                <li className='hover:bg-gray-700 hover:shadow-lg p-2 rounded'><Link href={'/foro'}>Foro General</Link></li>
+                {/*<li className='hover:bg-gray-700 hover:shadow-lg p-2 rounded'><Link href={'/foro'}>Foro General</Link></li>*/}
                 <li className='hover:bg-gray-700 hover:shadow-lg p-2 rounded'><Link href={'/nueva-reunion'}>Crear reuniones</Link></li>
                 <li className='hover:bg-gray-700 hover:shadow-lg p-2 rounded'><Link href={'/modificar-usuario'}>Modificar usuario</Link></li>
               </ul>
