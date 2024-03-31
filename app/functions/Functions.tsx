@@ -40,3 +40,52 @@ export async function eliminar(id: { id: string, estado: string, prjID:string}):
         });
 }
 
+export async function Crear(valores: any) {
+    //const valoresJSON = JSON.stringify(valores);
+    //console.log(valoresJSON);
+
+    fetch("http://localhost:9000/api/proyectos", {
+        method: 'POST',
+        body: JSON.stringify(valores),
+        headers: {
+            'Content-Type': 'application/json'
+        }
+
+    })
+        .then(res => res.json())
+        .then(data => {
+            console.log(data)
+            alert("Proyecto creado con exito")
+            window.location.reload()
+        })
+        .catch(error => console.error('Error:', error))
+
+
+}
+
+export async function Autenticar( valores:any) {
+    const temp = await fetch("http://localhost:9000/api/autenticacion", {
+          method: 'POST',
+          body: JSON.stringify(valores),
+          headers: {
+              'Content-Type': 'application/json'
+          }
+          
+      })
+      .then(res => {
+        console.log(res)
+        if (res.status === 500) {
+          
+          alert ("Correo o contraseña incorrectos")
+        }
+        if (res.status === 200){
+          
+          window.location.href = "/principal";
+        }
+        return res.json();
+      })
+      .catch(error => {console.error('Error:', error)})
+    
+      return temp;
+  
+  };

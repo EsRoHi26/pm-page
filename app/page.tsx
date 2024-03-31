@@ -2,38 +2,7 @@
 import Link from 'next/link';
 import React from 'react'
 import { useState } from 'react'
-
-
-
-export async function Autenticar(valores: any) {
-  const url: String = "http://localhost:9000/api/autenticacion";
-  fetch("http://localhost:9000/api/autenticacion", {
-        method: 'POST',
-        body: JSON.stringify(valores),
-        headers: {
-            'Content-Type': 'application/json'
-        }
-        
-    })
-    .then(res => {
-      console.log(res)
-      if (res.status === 500) {
-        
-        alert ("Correo o contraseña incorrectos")
-      }
-      if (res.status === 200){
-        
-        window.location.href = "/principal";
-      }
-      return res.json();
-    })
-    .then(res => res.json()) 
-    
-    .catch(error => {console.error('Error:', error)})
-    
-
-};
-
+import { Autenticar } from './functions/Functions';
 
 const Home = () => {
 
