@@ -3,6 +3,8 @@ const esquemaProyecto = require('../modelosDatos/proyecto');
 const { ExplainVerbosity } = require('mongodb');
 const moment = require('moment');
 const router = express.Router(); 
+const sgMail = require('@sendgrid/mail');
+sgMail.setApiKey("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");
 
 
 //crear proyecto
@@ -93,11 +95,26 @@ router.post('/proyectos/:id/tareas', (req, res) => {
             proyecto.tareas = proyecto.tareas || []; 
             proyecto.tareas.push(nuevaTarea);
 
-            proyecto.save()
-                .then(() => res.json(proyecto))
+            const emails = proyecto.correoColaboradores || [];
+            console.log(emails);
+
+            const correosAEnviar = emails.map(email => {
+                const msg = {
+                    to: email,
+                    from: 'vision.reque.no.reply@gmail.com',
+                    subject: 'Nueva tarea creada',
+                    text: `Se ha creado una nueva tarea llamada ${nombre} en el proyecto ${proyecto.nombre}.`,
+                    html: `Se ha creado una nueva tarea llamada ${nombre} en el proyecto ${proyecto.nombre}.`
+                };
+                return sgMail.send(msg);
+            });
+            return Promise.all(correosAEnviar)
+                .then(() => {
+                    return proyecto.save();
+                })
+                .then((proyecto) => res.json(proyecto)) 
                 .catch((error) => res.json(error));
-        })
-        .catch((error) => res.json(error));
+        });
 });
 
 
@@ -140,16 +157,30 @@ router.put('/proyectos/:id/tareasEstado/:idTarea', (req, res) => {
                     if (!tarea) {
                         return res.status(404).json({ error: "Tarea no encontrada" });
                     }
-
-                    
-                    if (estado) { tarea.estado = estado; }
-
-                    proyecto.save()
-                        .then(() => res.json(proyecto))
-                        .catch((error) => res.json(error));
-                })
-                .catch((error) => res.json(error));
-    
+                    if (estado) { 
+                        tarea.estado = estado; 
+                        if (estado === 'Finalizada') {
+                            const emails = proyecto.correoColaboradores || [];
+                            console.log(emails);
+                            
+                            const correosAEnviar = emails.map(email => {
+                            const msg = {
+                                to: email,
+                                from: 'vision.reque.no.reply@gmail.com',
+                                subject: 'Tarea Finalizada',
+                                text: `Se ha finalizado la tarea llamada ${tarea.nombre} en el proyecto ${proyecto.nombre}.`,
+                                html: `Se ha finalizado la tarea llamada ${tarea.nombre} en el proyecto ${proyecto.nombre}.`
+                        };
+                        return sgMail.send(msg);
+                    });
+                    return Promise.all([...correosAEnviar, proyecto.save()]);
+                } else {
+                    return proyecto.save();
+                }
+            }
+        })
+        .then(() => res.json({ message: 'Operation successful' }))
+        .catch((error) => res.json(error));
 });
 
 
@@ -409,7 +440,30 @@ router.delete('/eliminarMiembroP', (req, res) => {
         });
 });
 
+// Informe general de todos los proyectos
+router.get('/informe-general', (req, res) => {
+    esquemaProyecto.find()
+        .then(proyectos => {
+            let totalToDo = 0;
+            let totalInProgress = 0;
+            let totalFinished = 0;
 
+            proyectos.forEach(proyecto => {
+                totalToDo += proyecto.tareas.filter(tarea => tarea.estado === 'Pendiente').length;
+                totalInProgress += proyecto.tareas.filter(tarea => tarea.estado === 'En curso').length;
+                totalFinished += proyecto.tareas.filter(tarea => tarea.estado === 'Finalizada').length;
+            });
+
+            const data = {
+                totalPorHacer: totalToDo,
+                totalEnProgreso: totalInProgress,
+                totalFinalizadas: totalFinished
+            };
+
+            res.json(data);
+        })
+        .catch(error => res.json(error));
+});
 //revisar si tiene proyecto 
 
 
