@@ -3,6 +3,7 @@ import React from 'react'
 import { Proyectos, Tarea } from '../interfaces/project.interface'
 import KbnBtn from './KbnBtn';
 import { useRouter } from 'next/navigation';
+import KbnDelBtn from './KbanDelBtn';
 
 
 const Kanban = async (id: { id: string }) => {
@@ -40,7 +41,7 @@ const Kanban = async (id: { id: string }) => {
                         <div className='rounded bg-gray-400 bg-opacity-0 px-2 text-center shadow-md hover:shadow-none hover:bg-opacity-60'>
                             <Link href={{
                                 pathname: '/new-task',
-                                query: { pID: test, estado:"Pendiente" } // the data
+                                query: { pID: test, estado: "Pendiente" } // the data
                             }}>+</Link>
                         </div>
                     </div>
@@ -51,6 +52,9 @@ const Kanban = async (id: { id: string }) => {
                             <div className='flex'>
                                 <div className='flex-1'>
                                     <h1>{job.nombre}</h1>
+                                </div>
+                                <div className='mx-2 mb-3'>
+                                    <KbnDelBtn id={job._id} estado={'En curso'} prjID={test} />
                                 </div>
                                 <div className='mb-3'>
                                     <KbnBtn id={job._id} estado={'En curso'} prjID={test} />
@@ -78,9 +82,9 @@ const Kanban = async (id: { id: string }) => {
                     </div>
                     <div className='flex'>
                         <div className='rounded bg-gray-400 bg-opacity-0 px-2 text-center text-white shadow-md hover:shadow-none hover:bg-opacity-60 '>
-                        <Link href={{
+                            <Link href={{
                                 pathname: '/new-task',
-                                query: { pID: test, estado:"En curso" } // the data
+                                query: { pID: test, estado: "En curso" } // the data
                             }}>+</Link>
                         </div>
                     </div>
@@ -92,8 +96,11 @@ const Kanban = async (id: { id: string }) => {
                                 <div className='flex-1'>
                                     <h1>{job.nombre}</h1>
                                 </div>
-                                <div className='mx-2 mb-3'>
+                                <div className=' mb-3'>
                                     <KbnBtn id={job._id} estado={'Pendiente'} prjID={test} />
+                                </div>
+                                <div className='mx-2 mb-3'>
+                                    <KbnDelBtn id={job._id} estado={'En curso'} prjID={test} />
                                 </div>
                                 <div className='mb-3'>
                                     <KbnBtn id={job._id} estado={'Finalizada'} prjID={test} />
@@ -121,9 +128,9 @@ const Kanban = async (id: { id: string }) => {
                     </div>
                     <div className='flex'>
                         <div className='rounded bg-gray-400 bg-opacity-0 px-2 text-center text-white shadow-md hover:shadow-none hover:bg-opacity-60'>
-                        <Link href={{
+                            <Link href={{
                                 pathname: '/new-task',
-                                query: { pID: test, estado:"Finalizada" } // the data
+                                query: { pID: test, estado: "Finalizada" } // the data
                             }}>+</Link>
                         </div>
                     </div>
@@ -132,8 +139,13 @@ const Kanban = async (id: { id: string }) => {
                     <div key={job._id}>
                         <div className="bg-white shadow-md p-4 my-1 rounded-md">
                             <div className='flex'>
-                                <div className='flex-1 mb-3'>
-                                    <KbnBtn id={job._id} estado={'En curso'} prjID={test} />
+                                <div className='flex flex-1'>
+                                    <div className='mx-2 mb-3'>
+                                        <KbnBtn id={job._id} estado={'En curso'} prjID={test} />
+                                    </div>
+                                    <div className='mb-3'>
+                                        <KbnDelBtn id={job._id} estado={'En curso'} prjID={test} />
+                                    </div>
                                 </div>
                                 <div>
                                     <h1>{job.nombre}</h1>

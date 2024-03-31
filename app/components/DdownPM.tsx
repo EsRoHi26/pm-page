@@ -2,8 +2,10 @@
 import React from 'react'
 import SideNav from '../components/SideNav'
 import Link from 'next/link'
+
 import { Proyectos } from '../interfaces/users.interface'
 import { Usuario2 } from '../interfaces/project.interface'
+
 
 
 const DdownPM = async() => {

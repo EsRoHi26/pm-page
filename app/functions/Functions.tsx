@@ -25,5 +25,18 @@ export async function actualizar(id: { id: string, estado: string, prjID:string}
         });
 }
 
-
+export async function eliminar(id: { id: string, estado: string, prjID:string}): Promise<void> {
+    const s: string = id.id;
+    const p: string = id.prjID;
+    const url: string = 'http://localhost:9000/api/proyectos/' +p +'/tareasD/'+ s;
+    fetch(url, {
+        method: 'GET',
+    }).then(response => response.json())
+        .then(data => {
+            console.log(data);
+        })
+        .catch((error) => {
+            console.error('Error:', error);
+        });
+}
 
