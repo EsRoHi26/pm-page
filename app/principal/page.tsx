@@ -35,8 +35,8 @@ const principal = () => {
           </div>
         </div>
       </div>
-    
-  );
+      </div>
+)   
 };
 
 export default principal
