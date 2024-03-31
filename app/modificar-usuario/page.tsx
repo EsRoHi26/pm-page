@@ -4,10 +4,11 @@ import Link from 'next/link'
 import DdownPM from '../components/DdownPM'
 
 const page = () => {
+    
     return (
         <div className="flex h-screen bg-white">
             <SideNav />
-            <DdownPM/>
+            <DdownPM />
         </div>
     )
 }

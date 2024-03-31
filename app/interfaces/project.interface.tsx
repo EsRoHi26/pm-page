@@ -34,3 +34,14 @@ export interface Participante {
     proyecto:     number;
     __v:          number;
 }
+
+export interface Usuario2 {
+    _id:          string;
+    name:         string;
+    cedula:       number;
+    email:        string;
+    contrasenna:  string;
+    departamento: string;
+    telefono:     number;
+    proyecto:     string;
+}
