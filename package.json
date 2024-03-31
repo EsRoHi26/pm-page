@@ -11,15 +11,15 @@
   "dependencies": {
     "@coreui/icons": "^3.0.1",
     "@coreui/icons-react": "^2.2.1",
-
-    "bootstrap": "^5.3.3",
-    "icons": "^1.0.0",
-
     "@nextui-org/react": "^2.2.10",
+    "@sendgrid/mail": "^8.1.1",
+    "bootstrap": "^5.3.3",
+    "chart.js": "^4.4.2",
     "framer-motion": "^11.0.24",
-
+    "icons": "^1.0.0",
     "next": "14.1.4",
     "react": "^18",
+    "react-chartjs-2": "^5.2.0",
     "react-dom": "^18",
     "reactstrap": "^9.2.2"
   },
