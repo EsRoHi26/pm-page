@@ -69,4 +69,22 @@ router.post('/autenticacion', (req, res) => {
     
 });
 
+router.put('/usuariosM', (req, res) => {
+    
+
+    const { emailM, email, departamento, telefono, proyecto } = req.body;
+
+    esquemaUsuario.updateOne({email: emailM}, { $set: {email, departamento, telefono, proyecto}})
+        .then(()=>{res.json({mensaje: 'Usuario actualizado'})} )
+        .catch((err)=> res.json(err));  
+});
+
+router.post('/usuarios/email', (req, res) => {
+    const { emailM, email, departamento, telefono, proyecto } = req.body;
+
+    esquemaUsuario.findOne({ emailM })
+    .then((usuarios) => res.json(usuarios))
+    .catch((error) => res.json(error));
+
+});
 module.exports = router;

@@ -24,14 +24,14 @@ const principal = () => {
           </div>
           <div className='flex-1 mb-8 ml-2 bg-white text-black'>
             <div className='mt-5 p-5 overflow-auto'>
-              <h1>Proyectos</h1>
+          </div>    <h1>Proyectos</h1>
               <hr className='h-1 bg-black' />
                 <ProyectCard />
             </div>
           </div>
         </div>
       </div>
-    </div>
+    
   );
 };
 
