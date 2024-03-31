@@ -5,30 +5,7 @@ import { useState } from 'react'
 import { Participante } from '../interfaces/project.interface';
 import { Tarea } from '../interfaces/project.interface';
 import { CLIENT_STATIC_FILES_RUNTIME_REACT_REFRESH } from 'next/dist/shared/lib/constants';
-
-
-export async function Crear(valores: any) {
-    //const valoresJSON = JSON.stringify(valores);
-    //console.log(valoresJSON);
-
-    fetch("http://localhost:9000/api/proyectos", {
-        method: 'POST',
-        body: JSON.stringify(valores),
-        headers: {
-            'Content-Type': 'application/json'
-        }
-
-    })
-        .then(res => res.json())
-        .then(data => {
-            console.log(data)
-            alert("Proyecto creado con exito")
-            window.location.reload()
-        })
-        .catch(error => console.error('Error:', error))
-
-
-}
+import { Crear } from '../functions/Functions';
 
 const page = async () => {
     const usuar: Participante[] = await fetch('http://localhost:9000/api/usuarios', { method: 'GET' })
