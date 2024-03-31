@@ -9,10 +9,12 @@ const page = () => {
             <SideNav />
             <div className="flex-1 px-4 pt-2 text-black">
                 <div className='m-8 pt-24 pb-12'>
-                <VulnChart />
+                    <div className='pr-24'>
+                        <VulnChart />
+                    </div>
                 </div>
                 <div className='text-center'>
-                <Link className='rounded-md shadow-md bg-gray-400 p-2 hover:bg-gray-600' href={'/principal'}>Regesar</Link>
+                    <Link className='rounded-md shadow-md bg-gray-400 p-2 hover:bg-gray-600' href={'/principal'}>Regesar</Link>
                 </div>
             </div >
         </div>
