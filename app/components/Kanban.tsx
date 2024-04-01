@@ -12,7 +12,7 @@ const Kanban = async (id: { id: string }) => {
     let prog: Tarea[] = [];
     let done: Tarea[] = [];
 
-    await fetch('http://localhost:9000/api/proyectos/' + test, { method: 'GET', next: { revalidate: 5 } })
+    await fetch('https://pm-app-tmfg.onrender.com/api/proyectos/' + test, { method: 'GET', next: { revalidate: 5 } })
         .then(response => response.json())
         .then((data: Proyectos) => {
             let tareas: Tarea[] = data.tareas;

@@ -3,13 +3,13 @@ import { Participante, Proyectos } from '../interfaces/project.interface';
 
 const TablaPart = async (id: {id:string}) => {
     const test:string = id.id;
-    const url: string = 'http://localhost:9000/api/proyectos/' + test;
+    const url: string = 'https://pm-app-tmfg.onrender.com/api/proyectos/' + test;
 
     const res = await fetch(url, { method: 'GET' })
         .then(response => response.json())
         .then((data: Proyectos) => data.correoColaboradores)
         .then(async (respu) => {
-            const resp = await fetch('http://localhost:9000/api/usuarios', { method: 'GET' })
+            const resp = await fetch('https://pm-app-tmfg.onrender.com/api/usuarios', { method: 'GET' })
                 .then(response => response.json())
                 .then(data => {
                     let lista: Participante[] = []; // Initialize lista as an empty array

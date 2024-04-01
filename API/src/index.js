@@ -1,5 +1,7 @@
+#!/usr/bin/env node
+
 const express = require('express');
-const bcrypt = require('bcrypt');
+const bcryptjs = require('bcryptjs');
 const mongoose = require('mongoose');
 const cors = require('cors');
 require('dotenv').config();

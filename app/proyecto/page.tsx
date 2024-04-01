@@ -31,7 +31,6 @@ export default function page({ searchParams }: {
               <h1 className='px-5 font-bold'>Participantes</h1>
               <TablaPart id={searchParams.id} />
             </div>
-            <div className='flex-1 bg-red-300 px-5'> botones</div>
           </div>
         </div>
       </div >

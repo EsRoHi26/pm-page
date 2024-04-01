@@ -2,17 +2,17 @@
 import React from 'react'
 import SideNav from '../components/SideNav'
 import Link from 'next/link'
-import { Proyectos } from '../interfaces/users.interface'
+import { Proyectos } from '../interfaces/project.interface'
 
 
 const DdownP = async() => {
 
     let idProyecto = "";
 
-    const proyectos = await fetch('http://localhost:9000/api/proyectos')
+    const proyectos = await fetch('https://pm-app-tmfg.onrender.com/api/proyectos')
         .then(response => response.json())
         .then(data => { let temp: Proyectos[] = data; return temp })
-        proyectos.push({nombre: "Ninguno", _id: ""})
+       // proyectos.push({nombre: "Ninguno", _id: ""})
 
     interface Job {
         name: string,
@@ -53,7 +53,7 @@ const DdownP = async() => {
 
     function handleForm() {
         // se crea el usuario
-        fetch('http://localhost:9000/api/usuarios', {
+        fetch('https://pm-app-tmfg.onrender.com/api/usuarios', {
             method: 'POST',
             body: JSON.stringify(job),
             headers: {
@@ -74,8 +74,10 @@ const DdownP = async() => {
         // revisa si se le asigno un proyecto al usuario
         if (idProyecto !== ""){
 
+            
+
             // se agrega el usuario a la lista de colaboradores del proyecto seleccionado
-            fetch('http://localhost:9000/api/agregarusuarioP', {
+            fetch('https://pm-app-tmfg.onrender.com/api/agregarusuarioP', {
                 method: 'POST',
                 body: JSON.stringify({idProyecto: idProyecto , email: job.email}),
                 headers: {'Content-Type': 'application/json'}
@@ -100,7 +102,6 @@ const DdownP = async() => {
                     <h1 className='text-xl font-bold'>Crear Usuario</h1>
                 
                 <form onSubmit={handleForm} className="mt-5 space-y-4 border-2 border-black p-10  inline-block ml-44 mr-44 rounded">
-                    
                     <li style={{ listStyleType: 'none' }}><label htmlFor="name">Nombre: </label>
                     <input type="text" className="bg-white rounded" id="name" 
                     name="name" onChange={handleInputChange} required /></li>
