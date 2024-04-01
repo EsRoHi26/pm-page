@@ -9,10 +9,10 @@ const DDown = async (id: { pId: string, estado: string }) => {
     const s: string = id.pId;
     console.log(id.pId);
 
-    const users = await fetch('http://localhost:9000/api/usuarios', { method: 'GET' })
+    const users = await fetch('https://pm-app-tmfg.onrender.com/api/usuarios', { method: 'GET' })
         .then(response => response.json())
         .then(async (data) => { const temp: Participante[] = data; 
-            const temp2 = await fetch('http://localhost:9000/api/proyectos/' + s, { method: 'GET' })
+            const temp2 = await fetch('https://pm-app-tmfg.onrender.com/api/proyectos/' + s, { method: 'GET' })
                 .then(response => response.json())
                 .then((data:Proyectos) => {
                     let temporal: Participante[] = [];
@@ -50,7 +50,7 @@ const DDown = async (id: { pId: string, estado: string }) => {
     }
 
     function handleForm() {
-        fetch('http://localhost:9000/api/proyectos/' + s + '/tareas', {
+        fetch('https://pm-app-tmfg.onrender.com/api/proyectos/' + s + '/tareas', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
