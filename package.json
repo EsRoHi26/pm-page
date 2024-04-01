@@ -13,6 +13,7 @@
     "@coreui/icons-react": "^2.2.1",
     "@nextui-org/react": "^2.2.10",
     "@sendgrid/mail": "^8.1.1",
+    "bcryptjs": "^2.4.3",
     "bootstrap": "^5.3.3",
     "chart.js": "^4.4.2",
     "framer-motion": "^11.0.24",
