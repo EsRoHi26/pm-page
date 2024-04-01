@@ -1,3 +1,5 @@
+#!/usr/bin/env node
+
 const express = require('express');
 const bcrypt = require('bcrypt');
 const mongoose = require('mongoose');
