@@ -12,7 +12,7 @@ const DdownPM = async() => {
     let usuario =""
     let idProyecto = "";
     let proyectoUsuario = ""
-    const proyectos = await fetch('http://localhost:9000/api/proyectos')
+    const proyectos = await fetch('https://pm-app-tmfg.onrender.com/api/proyectos')
         .then(response => response.json())
         .then(data => { let temp: Proyectos[] = data; return temp })
 
@@ -58,7 +58,7 @@ const DdownPM = async() => {
     function handleForm() {
         console.log(job.emailM);
         //se actualiza el usuario
-        fetch('http://localhost:9000/api/usuariosM', {
+        fetch('https://pm-app-tmfg.onrender.com/api/usuariosM', {
             method: 'PUT',
             body: JSON.stringify(job),
             headers: {
@@ -83,7 +83,7 @@ const DdownPM = async() => {
         
 
                     //se agrega el usuario a la lista de colaboradores del proyecto seleccionado
-                    fetch('http://localhost:9000/api/agregarusuarioP', {
+                    fetch('https://pm-app-tmfg.onrender.com/api/agregarusuarioP', {
                         method: 'POST',
                         
                         body: JSON.stringify({idProyecto: idProyecto , email: job.email}),

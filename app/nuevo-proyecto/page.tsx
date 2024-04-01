@@ -8,7 +8,7 @@ import { CLIENT_STATIC_FILES_RUNTIME_REACT_REFRESH } from 'next/dist/shared/lib/
 import { Crear } from '../functions/Functions';
 
 const page = async () => {
-    const usuar: Participante[] = await fetch('http://localhost:9000/api/usuarios', { method: 'GET' })
+    const usuar: Participante[] = await fetch('https://pm-app-tmfg.onrender.com/api/usuarios', { method: 'GET' })
         .then(response => response.json())
         .then(data => {
             let temp: Participante[] = data;

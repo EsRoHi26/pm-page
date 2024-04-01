@@ -13,7 +13,7 @@ const proyectos = [
 ]
 
 const ProyectCard = async () => {
-    const projects = await fetch('http://localhost:9000/api/proyectos', { method: 'GET', cache: 'no-cache' });
+    const projects = await fetch('https://pm-app-tmfg.onrender.com/api/proyectos', { method: 'GET', cache: 'no-cache' });
     const prj: Proyectos[] = await projects.json();
 
     return (
