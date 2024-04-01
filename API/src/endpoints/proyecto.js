@@ -4,7 +4,7 @@ const { ExplainVerbosity } = require('mongodb');
 const moment = require('moment');
 const router = express.Router(); 
 const sgMail = require('@sendgrid/mail');
-sgMail.setApiKey("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");
+sgMail.setApiKey("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");
 
 
 //crear proyecto
