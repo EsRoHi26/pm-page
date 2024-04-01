@@ -10,7 +10,7 @@ const VulnChart = async () => {
         tareasPendientes: number
     }
 
-    const info = await fetch('http://localhost:9000/api/informeG')
+    const info = await fetch('https://pm-app-tmfg.onrender.com/api/informeG')
         .then(response => response.json())
         .then(data => { let temp: Info = data; return temp })
         .then(data => {
